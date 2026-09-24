@@ -6,25 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
+    public function up(): void
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('categoria_id')
+                ->constrained('categorias')
+                ->restrictOnDelete();
+            $table->string('nombre', 100);
+            $table->text('descripcion');
+            $table->decimal('precio', 8, 2);
+            $table->unsignedInteger('stock')->default(0);
+            $table->boolean('disponible')->default(true);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('productos');
     }

@@ -1,9 +1,9 @@
 <?php
- 
+
 namespace App\Http\Requests;
- 
+
 use Illuminate\Foundation\Http\FormRequest;
- 
+
 class StoreProductoRequest extends FormRequest
 {
     public function authorize(): bool
@@ -11,7 +11,7 @@ class StoreProductoRequest extends FormRequest
         // El acceso por rol lo controla el middleware 'rol' (HU-24)
         return true;
     }
- 
+
     public function rules(): array
     {
         return [
